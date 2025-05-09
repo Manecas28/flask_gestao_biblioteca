@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h2>Editar livro</h2>
+
+    <form class="form-editar" action="" method="POST">
+        {{form.hidden_tag()}}
+
+        <p>
+            {{ form.titulo.label }} <br>
+            {{ form.titulo(size=40) }} <br>
+
+            {% for error in form.titulo.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+        </p>
+        <p>
+            {{ form.autor.label }} <br>
+            {{ form.autor(size=40) }} <br>
+
+            {% for error in form.autor.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.ano.label }} <br>
+            {{ form.ano(size=40) }} <br>
+
+            {% for error in form.ano.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+
+        </p>
+
+        <p>{{ form.submeter() }}</p>
+
+    </form>
+
+{% endblock %}

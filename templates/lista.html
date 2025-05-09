@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h2>Lista de livros</h2>
+    <table>
+        {% for livro in livros %}
+        <tr>
+            <td>{{ livro.titulo }} | {{ livro.autor }} | {{ livro.ano }} <span class="editar-apagar"> <a href="{{url_for('editar', id=livro.id)}}"><i style="color: green;"class="fa-solid fa-pen-to-square"></i></a>  <a href="{{url_for('apagar', id=livro.id)}}"><i style ="color: red" class="fa-solid fa-trash" ></i></a></span>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
