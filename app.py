@@ -70,8 +70,8 @@ def registo():
         if Utilizador.query.filter_by(username = form.username.data).first():
             return "O utilizador já existe, escolha outro nome de utilizador"
         
-        novo_utilizador = Utilizador(nome = form.nome.data)
-        novo_utilizador = Utilizador(username = form.username.data)
+        novo_utilizador = Utilizador(nome = form.nome.data,
+        username = form.username.data)
         novo_utilizador.set_password(form.password.data)
         db.session.add(novo_utilizador)
         db.session.commit()

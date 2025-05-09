@@ -2,6 +2,7 @@
 
 {% block conteudo %}
 <form action="" method ="POST">
+    <h2>Login</h2>
     {{form.hidden_tag()}}
     <p>{{ form.username.label}} {{form.username()}}</p>
     <p>{{ form.password.label}} {{form.password()}}</p>
