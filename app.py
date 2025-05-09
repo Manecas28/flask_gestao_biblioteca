@@ -78,5 +78,25 @@ def registo():
         return redirect(url_for('login'))
     return render_template('registo.html', form=form)
 
+@app.route('/login', methods = ['GET','POST'])
+
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        user = Utilizador.query.filter_by(username = form.username.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user)
+            return redirect(url_for('index'))
+        return "Login inválido. Tente novamente!"
+    return render_template('login.html', form = form)
+
+@app.route('/logout')
+@login_required
+
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 if __name__ == "__main__":
     app.run(debug=True)
