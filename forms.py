@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms import StringField, IntegerField, SubmitField, PasswordField
+from wtforms.validators import DataRequired, NumberRange, EqualTo
 
 class LivroForm(FlaskForm):
     titulo = StringField('Titulo', validators=[DataRequired()])
@@ -10,5 +10,17 @@ class LivroForm(FlaskForm):
 
 # Classes para fazer login e Registo nas aplicações
 
+class LoginForm(FlaskForm):
 
+    username = StringField('Utilizador', validators= [DataRequired()])
+    password = PasswordField('Password', validators= [DataRequired()])
+    submeter = SubmitField('Entrar')
+
+class RegistoForm(FlaskForm):
+    
+    nome = StringField('Nome', validators= [DataRequired()])
+    username = StringField('Utilizador', validators= [DataRequired()])
+    password = PasswordField('Password', validators= [DataRequired()])
+    confirmar = PasswordField('Confirmar Password', validators= [EqualTo('password')])
+    submeter = SubmitField('Registar')
 
