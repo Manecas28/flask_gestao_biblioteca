@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request
-from models import db, Livro
+from models import db, Livro, Utilizador
 from forms import LivroForm
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+
 
 app = Flask(__name__)
 
@@ -10,6 +12,7 @@ app.secret_key = 'segredomuitobemguardado'
 db.init_app(app)
 
 # Criar a Base de dados
+
 @app.before_request
 def criar_bd():
     db.create_all()
@@ -49,6 +52,16 @@ def apagar(id):
     db.session.delete(livro)
     db.session.commit()
     return redirect(url_for('listar'))
+
+# Criação de login
+
+login_manager = LoginManager(app)
+login_manager.login_view = "login"
+
+@login_manager.user_loader
+
+def load_user(user_id):
+    return Utilizador.query.get(int(user_id))
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -8,3 +8,7 @@ class LivroForm(FlaskForm):
     ano = IntegerField('Ano', validators=[NumberRange(min=1500, max=2100)])
     submeter = SubmitField('Gravar')
 
+# Classes para fazer login e Registo nas aplicações
+
+
+
